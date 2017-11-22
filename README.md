@@ -50,3 +50,4 @@ slider:
 * Ajouter le dossier web/img/slider/slide/tmp
 * Ajouter le dossier web/img/slider/slide/minitaure
 * Design disponible dans le dossier Install
+* JS disponible dans le dossier Install
