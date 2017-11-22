@@ -1,0 +1,3 @@
+slider_homepage:
+    path:     /
+    defaults: { _controller: SliderBundle:Default:index }
