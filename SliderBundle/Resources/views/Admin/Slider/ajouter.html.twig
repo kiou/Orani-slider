@@ -1,0 +1,21 @@
+{% extends "GlobalBundle:Admin/Layout:layout.html.twig" %}
+
+{% block contentTitre %} Ajouter un slider{% endblock %}
+
+{% block content %}
+
+	{{ form_start(form, {'attr': {novalidate: 'novalidate'}}) }}
+
+		{{ form_errors(form) }}
+		
+		{{ form_label(form.titre, "Titre *") }}
+		{{ form_errors(form.titre) }}
+		{{ form_widget(form.titre, {'attr': {'class': 'form-elem big'}}) }}
+
+        <br>
+
+		{{ form_rest(form) }}
+
+	{{ form_end(form) }}
+
+{% endblock %}

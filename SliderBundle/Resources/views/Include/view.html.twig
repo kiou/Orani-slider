@@ -1,0 +1,22 @@
+{% if slides|length > 0 %}
+    <div class="slider owl-carousel owl-theme">
+        {% for slide in slides %}
+
+            <div class="sliderSlide">
+                <div class="sliderContenu">
+                    <h3>{{ slide.titre }}</h3>
+                    <p>{{ slide.contenu|nl2br }}</p>
+                    {% if slide.lien %}
+                        <a href="{{ slide.lien }}">En savoir +</a>
+                    {% endif %}
+                </div>
+
+                <div class="sliderImage">
+                    <img src="{{ asset('img/slider/slide/miniature/' ~ slide.image) }}">
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+{% endif %}

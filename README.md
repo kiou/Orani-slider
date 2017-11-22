@@ -22,7 +22,13 @@
 ## Installation
 ### Menu
 ```twig
-ICI
+{% set menuSlider = ['admin_slider_manager', 'admin_slider_ajouter', 'admin_slider_modifier','admin_sliderslide_manager', 'admin_sliderslide_ajouter', 'admin_sliderslide_modifier'] %}
+
+<a href="#" data-nav="slider-menu" class="menuNav {{ getCurrentMenu(menuSlider) }}"> <i class="fa fa-sliders"></i> Sliders <i class="fa fa-angle-right"></i></a>
+<ul id="slider-menu" class="{{ getCurrentMenu(menuSlider) }}">
+    <li class="{{ getCurrentMenu(['admin_slider_ajouter']) }}"><a href="{{ path('admin_slider_ajouter')}}">Ajouter un slider</a></li>
+    <li class="{{ getCurrentMenu(['admin_slider_manager']) }}"><a href="{{ path('admin_slider_manager')}}">Gestion des sliders</a></li>
+</ul>
 ```
 
 ### Fichier

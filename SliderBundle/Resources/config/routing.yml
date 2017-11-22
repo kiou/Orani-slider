@@ -1,3 +1,64 @@
-slider_homepage:
-    path:     /
-    defaults: { _controller: SliderBundle:Default:index }
+# Slider
+admin_slider_manager:
+    path:     /admin/slider/gestion
+    defaults: { _controller: SliderBundle:Slider:managerAdmin }
+
+admin_slider_ajouter:
+    path:     /admin/slider/ajouter
+    defaults: { _controller: SliderBundle:Slider:ajouterAdmin }
+
+admin_slider_modifier:
+    path:     /admin/slider/modifier/{id}
+    defaults: { _controller: SliderBundle:Slider:modifierAdmin }
+    requirements:
+        id: \d+
+
+admin_slider_supprimer:
+    path:     /admin/slider/supprimer/{id}
+    defaults: { _controller: SliderBundle:Slider:supprimerAdmin }
+    requirements:
+        id: \d+
+
+# Slide
+admin_sliderslide_manager:
+    path:     /admin/slider-slide/gestion/{slider}
+    defaults: { _controller: SliderBundle:Slide:managerAdmin }
+    requirements:
+        slider: \d+
+
+admin_sliderslide_ajouter:
+    path:     /admin/slider-slide/ajouter/{slider}
+    defaults: { _controller: SliderBundle:Slide:ajouterAdmin }
+    requirements:
+        slider: \d+
+
+admin_sliderslide_publier:
+    path:     /admin/slider-slide/publier/{slider}/{id}
+    defaults: { _controller: SliderBundle:Slide:publierAdmin }
+    requirements:
+        slider: \d+
+        id: \d+
+
+admin_sliderslide_modifier:
+    path:     /admin/slider-slide/modifier/{slider}/{id}
+    defaults: { _controller: SliderBundle:Slide:modifierAdmin }
+    requirements:
+        slider: \d+
+        id: \d+
+
+admin_sliderslide_supprimer:
+    path:     /admin/slider-slide/supprimer/{slider}/{id}
+    defaults: { _controller: SliderBundle:Slide:supprimerAdmin }
+    requirements:
+        slider: \d+
+        id: \d+
+
+admin_sliderslide_poid:
+    path:     /admin/slider-slide/poid/{slider}/{id}/{poid}
+    defaults:
+        _controller: SliderBundle:Slide:poidAdmin
+        poid : 1
+    requirements:
+        slider: \d+
+        id: \d+
+        poid: \d+

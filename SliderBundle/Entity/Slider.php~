@@ -1,0 +1,193 @@
+<?php
+
+namespace SliderBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+
+
+/**
+ * Slider
+ *
+ * @ORM\Table(name="slider")
+ * @ORM\Entity(repositoryClass="SliderBundle\Repository\SliderRepository")
+ * @ORM\HasLifecycleCallbacks
+ */
+class Slider
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetimetz")
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="changed", type="datetimetz", nullable=true)
+     */
+    private $changed;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255)
+     * @Assert\NotBlank(message="Compléter le champ titre")
+     */
+    private $titre;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isActive", type="boolean")
+     */
+    private $isActive;
+
+    /**
+     * @ORM\OneToMany(targetEntity="SliderBundle\Entity\Slide", mappedBy="slider")
+     */
+    private $slides;
+
+    public function __construct()
+    {
+        $this->isActive = true;
+        $this->created = new \DateTime();
+        $this->slides = new ArrayCollection();
+
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return Slider
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set changed
+     *
+     * @param \DateTime $changed
+     *
+     * @return Slider
+     */
+    public function setChanged($changed)
+    {
+        $this->changed = $changed;
+
+        return $this;
+    }
+
+    /**
+     * Get changed
+     *
+     * @return \DateTime
+     */
+    public function getChanged()
+    {
+        return $this->changed;
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preChanged()
+    {
+        $this->changed = new \DateTime();
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return Slider
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return Page
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Retourne 1 si actif 0 si pas actif
+     */
+    public function reverseState()
+    {
+        $etat = $this->getIsActive();
+
+        return !$etat;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return bool
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+}
