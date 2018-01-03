@@ -10,7 +10,7 @@ namespace SliderBundle\Repository;
  */
 class SliderRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getAllSliders($recherche)
+    public function getAllSliders($recherche, $langue)
     {
         $qb = $this->createQueryBuilder('s');
 
@@ -20,6 +20,14 @@ class SliderRepository extends \Doctrine\ORM\EntityRepository
         if(!is_null($recherche)){
             $qb->andWhere('s.titre LIKE :titre')
                 ->setParameter('titre', '%'.$recherche.'%');
+        }
+
+        /**
+         * recherche via la langue
+         */
+        if(!empty($langue)){
+            $qb->andWhere('s.langue = :langue')
+               ->setParameter('langue', $langue);
         }
 
         $qb->orderBy('s.id', 'DESC');

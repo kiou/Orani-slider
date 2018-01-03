@@ -7,7 +7,7 @@
                     <h3>{{ slide.titre }}</h3>
                     <p>{{ slide.contenu|nl2br }}</p>
                     {% if slide.lien %}
-                        <a href="{{ slide.lien }}">En savoir +</a>
+                        <a href="{{ slide.lien }}">{{ 'slider.client.link.plus'|trans }}</a>
                     {% endif %}
                 </div>
 

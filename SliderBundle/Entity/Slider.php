@@ -52,6 +52,14 @@ class Slider
      */
     private $slides;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="langue", type="string", length=8)
+     * @Assert\NotBlank(message="Compléter le champ langue")
+     */
+    private $langue;
+
     public function __construct()
     {
         $this->created = new \DateTime();
@@ -182,4 +190,21 @@ class Slider
     {
         return $this->slides;
     }
+
+    /**
+     * @return string
+     */
+    public function getLangue()
+    {
+        return $this->langue;
+    }
+
+    /**
+     * @param string $langue
+     */
+    public function setLangue($langue)
+    {
+        $this->langue = $langue;
+    }
+
 }

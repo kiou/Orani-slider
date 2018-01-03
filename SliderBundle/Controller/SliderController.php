@@ -42,14 +42,15 @@ class SliderController extends Controller
         /* Services */
         $rechercheService = $this->get('recherche.service');
         $recherches = $rechercheService->setRecherche('slider_manager', array(
-                'recherche'
+                'recherche',
+                'langue'
             )
         );
 
         /* La liste des sliders */
         $sliders = $this->getDoctrine()
                         ->getRepository('SliderBundle:Slider')
-                        ->getAllSliders($recherches['recherche']);
+                        ->getAllSliders($recherches['recherche'], $recherches['langue']);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -58,9 +59,13 @@ class SliderController extends Controller
             50/*limit per page*/
         );
 
+        /* La liste des langues */
+        $langues = $this->getDoctrine()->getRepository('GlobalBundle:Langue')->findAll();
+
         return $this->render( 'SliderBundle:Admin/Slider:manager.html.twig', array(
                 'pagination' => $pagination,
-                'recherches' => $recherches
+                'recherches' => $recherches,
+                'langues' => $langues
             )
         );
 
