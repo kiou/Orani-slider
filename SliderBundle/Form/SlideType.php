@@ -23,10 +23,7 @@ class SlideType extends AbstractType
             ->add('lien', TextType::class)
             ->add('fileimage', FileType::class)
             ->add('contenu', TextareaType::class)
-            ->add('Enregistrer', SubmitType::class, array(
-                    'attr' => array('class' => 'form-submit turquoise medium')
-                )
-            );
+            ->add('Enregistrer', SubmitType::class);
     }
     
     /**

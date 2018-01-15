@@ -1,0 +1,110 @@
+/* SliderBundle */
+.slider{
+    margin-bottom: 30px;
+}
+
+.sliderImage{
+    z-index:1;
+    img{
+        width: 100%;
+        height: auto;
+        @include border-radius($borderBox);
+    }
+}
+
+.sliderPattern{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index:2;
+    @include border-radius($borderBox);
+    @include background-image(linear-gradient(to top, rgba($gris,0.7), rgba($gris,0.1)));
+}
+
+.sliderContenu{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 50%;
+    z-index:3;
+    opacity:0;
+    padding:0px 120px 0px 0px;
+    @include border-right-radius($borderBox);
+    @include transition-property(opacity, transform);
+    @include transition-duration(0.4s);
+    @include transition-timing-function(ease);
+    @include transform(scale(0.98));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &.active{
+        opacity:1;
+        @include transform(scale(1));
+    }
+
+    h2, p{
+        margin-bottom: 30px;
+        color: $blanc;
+    }
+}
+
+.owl-nav{
+    .owl-prev, .owl-next{
+        height: 50px;
+        width: 50px;
+        position: absolute;
+        top: calc(50% - 25px);
+        color: #fff;
+        line-height:50px;
+        text-align: center;
+        font-size: 40px;
+        @include transition-property(opacity);
+        @include transition-duration(0.3s);
+        @include transition-timing-function(ease);
+        opacity:1;
+        z-index:4;
+        &:hover{
+            opacity:0.5;
+        }
+    }
+
+    .owl-prev{
+        left: 20px;
+    }
+
+    .owl-next{
+        right: 20px;
+    }
+}
+
+.owl-dots{
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 40px;
+    z-index:4;
+    .owl-dot{
+        height: 12px;
+        width: 12px;
+        background-color: lighten($gris,45%);
+        @include border-radius(50%);
+        display: inline-block;
+        margin: 0px 8px;
+        @include transition-property(height, width, background-color);
+        @include transition-duration(0.3s);
+        @include transition-timing-function(ease);
+        &.active{
+            height: 15px;
+            width: 15px;
+            background-color: $blanc;
+        }
+        &:hover{
+            background-color: $blanc;
+        }
+    }
+}
