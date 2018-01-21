@@ -1,0 +1,20 @@
+@media screen and (max-width: 920px) {
+
+    .owl-nav{ display: none; }
+
+    .sliderContenu{
+        width: 100%;
+        padding: 40px;
+    }
+
+}
+
+@media screen and (max-width: 640px){
+
+    .sliderContenu{
+        p{
+            display: none;
+        }
+    }
+
+}
